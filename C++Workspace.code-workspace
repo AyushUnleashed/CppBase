@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"iostream": "cpp",
+			"ostream": "cpp",
+			"cmath": "cpp",
+			"bitset": "cpp",
+			"string_view": "cpp"
+		}
+	}
+}
