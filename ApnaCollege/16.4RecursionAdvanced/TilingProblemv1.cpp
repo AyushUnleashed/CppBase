@@ -27,8 +27,6 @@ int totalWaysOfTlies(int n)
   int horizontalCount =  totalWaysOfTlies(n-2);
 
   return verticalCount+horizontalCount;
-
-
 }
 
 
