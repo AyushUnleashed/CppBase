@@ -10,7 +10,7 @@
 //loop for n bits // 0th  -> (n-1)th  bit posn
 
 #include<iostream>
-#include<conio.h>
+//#include<conio.h>
 #include<math.h>
 #include<string.h>
 using namespace std;
