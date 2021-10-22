@@ -7,7 +7,7 @@ int main()
     system("cls");
 
     int n;  cin>>n;
-    int counter=0;  int x=0;
+    int counter=0;  int x=0;    
     int p=(n/2)+1;  x=1+(n*counter);
     
     for(int i=1;i<=n;i++)
