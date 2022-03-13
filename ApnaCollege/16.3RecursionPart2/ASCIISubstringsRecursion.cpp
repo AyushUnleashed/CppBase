@@ -15,9 +15,9 @@ void subSet(string input,string output)
 subSet(input.substr(1),output); //nhi liya
 subSet(input.substr(1),output+input[0]);//liya hai
 
-int intInput = input[0];
-string ans = to_string(intInput);
-subSet(input.substr(1),output+ans);//liya hai again
+// int intInput = input[0];
+// string ans = to_string(intInput);
+// subSet(input.substr(1),output+ans);//liya hai again
 }
 
 int main()  

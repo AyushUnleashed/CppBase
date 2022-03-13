@@ -15,7 +15,7 @@ int main()
     {  
       for(int j=0;j<len;j++)
       {
-        int mask = 1 << j;
+        int mask = 1 << j; 
 
         if( (num & mask)!=0)
         {   //cout<<"y";
