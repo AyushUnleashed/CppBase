@@ -15,23 +15,36 @@ class Fraction
     int denominator;
 
     public:
+
+    //default constructor needs to be intialised because,
+    //otherwise you can't declare normal object, 
+    // you will need to pass parameters for parameterised functions because they are defined.
+
+    Fraction()
+    {
+
+    }
     Fraction(int numerator,int denominator)
     {
         this->numerator=numerator;
         this->denominator=denominator;
     }
 
-    int getNumerator()
+    //getters and setters are needed to access private variables outside the scope.
+
+
+    // if function doesn't change object properties , it can be set as const and be used by const object
+    int getNumerator() const
     {
         return numerator;
     }
 
-    int getDenominator()
+    int getDenominator() const
     {
         return denominator;
     }
 
-    void setNumerator(int numerator)
+    void setNumerator(int numerator) 
     {
         this->numerator = numerator;
     }
@@ -43,7 +56,7 @@ class Fraction
 
 
     // Print a Fraction number
-    void print()
+    void print() const
     {
         cout<<this->numerator<<"/"<<this->denominator;
         //or
@@ -86,8 +99,15 @@ int main()
 {
     Fraction f1(10,3);
     Fraction f2(5,3);
+    Fraction const f3;
+
+    // you can't call getter and setters with const objects.
+    // to call a getter , it has to be a const function [ do no changes to object]
+    cout<<f3.getNumerator();
+    f3.print();
+
+    //set functions are not allowed, they do changes to object.
+    // f3.setNumerator(5);
 
     return 0;
-
-
 }
