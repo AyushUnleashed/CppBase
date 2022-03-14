@@ -124,12 +124,23 @@ class Fraction
     // [fraction -> fraction+denominator] , denominator remain same [check on paper]
     //no argument needed unary will have value in this
 
+    //pre-increment 
     Fraction& operator ++ () 
     {
         numerator=numerator+denominator;
         simplify();
         return (*this);
     }
+
+    //post-increment
+    Fraction& operator ++ (int)
+    {   
+        Fraction fOld(this->numerator,this->denominator); 
+        numerator=numerator+denominator; //value increased
+        simplify();
+        return (fOld); //returning value still the same
+    }
+
 };
 
 
