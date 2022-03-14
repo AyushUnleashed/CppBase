@@ -1,7 +1,8 @@
 #include<iostream>
 using namespace std;
 
-//static members are independ of objects, they are members of class
+//static members are independ of objects,
+// they are members of class
 // shared among all objects
 class Student
 {

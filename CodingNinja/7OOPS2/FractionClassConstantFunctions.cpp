@@ -30,10 +30,12 @@ class Fraction
         this->denominator=denominator;
     }
 
-    //getters and setters are needed to access private variables outside the scope.
+    //getters and setters are needed to
+    // access private variables outside the scope.
 
 
-    // if function doesn't change object properties , it can be set as const and be used by const object
+    // if function doesn't change object properties ,
+    // it can be set as const and be used by const object
     int getNumerator() const
     {
         return numerator;
