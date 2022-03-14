@@ -118,6 +118,18 @@ class Fraction
         
         return isEqual;
     }
+
+
+    //preincrement operator fraction => ++fraction or fraction +1
+    // [fraction -> fraction+denominator] , denominator remain same [check on paper]
+    //no argument needed unary will have value in this
+
+    Fraction operator ++ () 
+    {
+        numerator=numerator+denominator;
+        simplify();
+        return (*this);
+    }
 };
 
 
@@ -169,5 +181,13 @@ int main()
     {
         cout<<"\n Both are UnEqual";
     }
+
+    cout<<endl;
+    
+    f7.print();
+    Fraction f8 = ++(++f7);
+    f7.print();
+    cout<<endl;
+    f8.print();
     return 0;
 }
