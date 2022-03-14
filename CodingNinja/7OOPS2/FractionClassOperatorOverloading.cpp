@@ -124,7 +124,7 @@ class Fraction
     // [fraction -> fraction+denominator] , denominator remain same [check on paper]
     //no argument needed unary will have value in this
 
-    Fraction operator ++ () 
+    Fraction& operator ++ () 
     {
         numerator=numerator+denominator;
         simplify();
