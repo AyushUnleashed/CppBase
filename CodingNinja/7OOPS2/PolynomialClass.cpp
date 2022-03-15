@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+//runtime erro in submission
+
 
 //Array -> indices = degree , value = coefficient
 class Polynomial{
@@ -44,6 +46,18 @@ class Polynomial{
         for(int i=0;i<capacity;i++)
         {
             this->degCoeff[i]=p.degCoeff[i];
+        }
+    }
+
+    //Making paramaterized constructor for defining with capacity
+    Polynomial (int capacity){
+        this->degCoeff=new int[capacity+1];
+        this->capacity=capacity;
+
+        
+        for(int i=0;i<capacity;i++)
+        {
+            degCoeff[i]=0;
         }
     }
 
@@ -96,19 +110,9 @@ class Polynomial{
     Polynomial operator + (Polynomial &p2){
         
         //addition of two polynomial
+        int newCap=max(this->capacity,p2.capacity);
 
-        if(this->capacity > p2.capacity)
-        {
-            //increase p2 capacity
-            p2.capacity =this->capacity;
-        }else{
-            //increase p1 capacity
-            this->capacity =p2.capacity;
-        }
-
-        Polynomial p3;
-        p3.capacity = p2.capacity;
-
+        Polynomial p3(newCap);
         //adding two of them
 
         for(int i=0;i<capacity;i++){
@@ -120,18 +124,8 @@ class Polynomial{
     Polynomial operator - (Polynomial &p2){
         
         //subtraction of two polynomial
-
-        if(this->capacity > p2.capacity)
-        {
-            //increase p2 capacity
-            p2.capacity =this->capacity;
-        }else{
-            //increase p1 capacity
-            this->capacity =p2.capacity;
-        }
-
-        Polynomial p3;
-        p3.capacity = p2.capacity;
+        int newCap=max(this->capacity,p2.capacity);
+        Polynomial p3(newCap);
 
         //subtracting two of them
 
@@ -143,112 +137,113 @@ class Polynomial{
 
     Polynomial operator * (Polynomial  &p2)
     {
-        if(this->capacity > p2.capacity)
+
+        int thisCap = this->capacity;
+        int newCap = thisCap * p2.capacity;
+        Polynomial p3(newCap); //has garbage values in the extra empty blocks
+        for(int i=0;i<p3.capacity;i++)
         {
-            //increase p2 capacity
-            p2.capacity =this->capacity;
-        }else{
-            //increase p1 capacity
-            this->capacity =p2.capacity;
+            p3.degCoeff[i]=0;
         }
 
-        Polynomial p3;
-        p3.capacity = p2.capacity;
+        for(int i=0;i<p2.capacity;i++)
+        {
+            for(int j=0;j<(this->capacity);j++)
+            {
+                int finalIndex = i+j;
+                p3.degCoeff[finalIndex]+=p2.degCoeff[i]*(this->degCoeff[j]);
+            }
+        }
+
+        return p3;
     }
-
-
 }; 
 
 
-
-int main(){
+int main()
+{
+    int count1,count2,choice;
+    cin >> count1;
+    
+    int *degree1 = new int[count1];
+    int *coeff1 = new int[count1];
+    
+    for(int i=0;i < count1; i++) {
+        cin >> degree1[i];
+    }
+    
+    for(int i=0;i < count1; i++) {
+        cin >> coeff1[i];
+    }
+    
+    Polynomial first;
+    for(int i = 0; i < count1; i++){
+        first.setCoefficient(degree1[i],coeff1[i]);
+    }
+    
+    cin >> count2;
+    
+    int *degree2 = new int[count2];
+    int *coeff2 = new int[count2];
+    
+    for(int i=0;i < count2; i++) {
+        cin >> degree2[i];
+    }
+    
+    for(int i=0;i < count2; i++) {
+        cin >> coeff2[i];
+    }
+    
+    Polynomial second;
+    for(int i = 0; i < count2; i++){
+        second.setCoefficient(degree2[i],coeff2[i]);
+    }
+    
+    cin >> choice;
+    
+    Polynomial result;
+    switch(choice){
+            // Add
+        case 1:
+            result = first + second;
+            result.print();
+            break;
+            // Subtract
+        case 2 :
+            result = first - second;
+            result.print();
+            break;
+            // Multiply
+        case 3 :
+            result = first * second;
+            result.print();
+            break;
+            
+        case 4 : // Copy constructor
+        {
+            Polynomial third(first);
+            if(third.degCoeff == first.degCoeff) {
+                cout << "false" << endl;
+            }
+            else {
+                cout << "true" << endl;
+            }
+            break;
+        }
+            
+        case 5 : // Copy assignment operator
+        {
+            Polynomial fourth(first);
+            if(fourth.degCoeff == first.degCoeff) {
+                cout << "false" << endl;
+            }
+            else {
+                cout << "true" << endl;
+            }
+            break;
+        }
+            
+    }
     
     return 0;
 }
-// int main()
-// {
-//     int count1,count2,choice;
-//     cin >> count1;
-    
-//     int *degree1 = new int[count1];
-//     int *coeff1 = new int[count1];
-    
-//     for(int i=0;i < count1; i++) {
-//         cin >> degree1[i];
-//     }
-    
-//     for(int i=0;i < count1; i++) {
-//         cin >> coeff1[i];
-//     }
-    
-//     Polynomial first;
-//     for(int i = 0; i < count1; i++){
-//         first.setCoefficient(degree1[i],coeff1[i]);
-//     }
-    
-//     cin >> count2;
-    
-//     int *degree2 = new int[count2];
-//     int *coeff2 = new int[count2];
-    
-//     for(int i=0;i < count2; i++) {
-//         cin >> degree2[i];
-//     }
-    
-//     for(int i=0;i < count2; i++) {
-//         cin >> coeff2[i];
-//     }
-    
-//     Polynomial second;
-//     for(int i = 0; i < count2; i++){
-//         second.setCoefficient(degree2[i],coeff2[i]);
-//     }
-    
-//     cin >> choice;
-    
-//     Polynomial result;
-//     switch(choice){
-//             // Add
-//         case 1:
-//             result = first + second;
-//             result.print();
-//             break;
-//             // Subtract
-//         case 2 :
-//             result = first - second;
-//             result.print();
-//             break;
-//             // Multiply
-//         case 3 :
-//             result = first * second;
-//             result.print();
-//             break;
-            
-//         case 4 : // Copy constructor
-//         {
-//             Polynomial third(first);
-//             if(third.degCoeff == first.degCoeff) {
-//                 cout << "false" << endl;
-//             }
-//             else {
-//                 cout << "true" << endl;
-//             }
-//             break;
-//         }
-            
-//         case 5 : // Copy assignment operator
-//         {
-//             Polynomial fourth(first);
-//             if(fourth.degCoeff == first.degCoeff) {
-//                 cout << "false" << endl;
-//             }
-//             else {
-//                 cout << "true" << endl;
-//             }
-//             break;
-//         }
-            
-//     }
-    
-//     return 0;
-// }
