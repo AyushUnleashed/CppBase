@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+#online judge extension
+*.prob
+*.cph
+
 # Compiled Object files
 *.slo
 *.lo
