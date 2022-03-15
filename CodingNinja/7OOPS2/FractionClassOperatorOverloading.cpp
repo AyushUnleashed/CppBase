@@ -141,6 +141,22 @@ class Fraction
         return (fOld); //returning value still the same
     }
 
+    //+= Overloading i+=j -> i=i+j ,similar to add function 
+    // nesting is allowed (i+=j)+=j //i increased twice
+
+    // Fraction return type for doing nesting 
+    // Fraction& -> returning by refrence to avoid creating buffer copy 
+    // if we don't return by refrence
+    //,  in nesting value of buffer will be modified instead of variable value
+    
+    Fraction& operator+=( const Fraction& f2) 
+    {
+        numerator = (this->numerator)*f2.denominator+f2.numerator*(this->denominator);
+        denominator = this->denominator*f2.denominator;
+        simplify(); 
+        return (*this);
+    }
+
 };
 
 
@@ -200,5 +216,10 @@ int main()
     f7.print();
     cout<<endl;
     f8.print();
+    cout<<endl;
+    Fraction f9(5,9); Fraction f10(1,2);
+    f9.print();
+    (f10+=f9)+=f9;
+    f9.print();
     return 0;
 }
