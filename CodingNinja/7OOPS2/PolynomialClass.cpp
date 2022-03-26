@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-//runtime erro in submission
+//runtime error in submission
 
 
 //Array -> indices = degree , value = coefficient
@@ -16,7 +16,8 @@ class Polynomial{
     //Copy Assignment Constructor || p2=p1; [x]
 
     //Print Polynomial coeffxdegree[x]
-    //Set coefficient ||  p1.setCoefficient(degree,coeff) || if(degree> capacity) || increase array size till it fits
+    //Set coefficient ||  p1.setCoefficient(degree,coeff)
+    // || if(degree> capacity) || increase array size till it fits
    // [x]
     // +Overlaod p3=p1++p2 [x]
     // -Overload p3=p1-p2 [x]
