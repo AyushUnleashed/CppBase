@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+// My way  || Brute Force
+
+
+/* 
+Time Complexity = O(n)
+Space Complexity = O(n) // since we created a duplicate based on size of LL
+*/
 class Node
 {
 public:
