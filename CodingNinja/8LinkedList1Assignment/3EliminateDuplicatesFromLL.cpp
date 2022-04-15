@@ -34,8 +34,10 @@ Node *removeDuplicates(Node *head)
     while(temp!=NULL) // traversing orignal LL
     {
 
-		// for last element case  eg: 122233 in this case you can't compare temp and temp->next becuase 
-		// temp->next will be null so we just add that node, because if duplicate was present it wouldn't have been added
+		// for last element case  eg: 122233 in this 
+		//case you can't compare temp and temp->next becuase 
+		// temp->next will be null so we just add that node,
+		// because if duplicate was present it wouldn't have been added
 
 		if(temp->next==NULL) // last element case
 		{

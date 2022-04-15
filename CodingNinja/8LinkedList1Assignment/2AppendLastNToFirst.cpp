@@ -30,7 +30,6 @@ int length(Node* head)
 Node *appendLastNToFirst(Node *head, int n)
 {
     // last n nodes
-
     // traverse till n-1 th node
 
     if(head==NULL || n==0)
@@ -64,10 +63,8 @@ Node *appendLastNToFirst(Node *head, int n)
         temp=temp->next;
     }
 
-    //temp will have second last node
-    
+    //temp will have second last node 
     temp->next = head1; //attaching last node of LL2 to head of LL1
-
     return head;
 }
 
