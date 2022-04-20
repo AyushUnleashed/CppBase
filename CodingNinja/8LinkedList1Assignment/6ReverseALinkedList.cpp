@@ -14,14 +14,43 @@ public:
 	}
 };
 
-void printReverse(Node *head)
+void print(Node *head)
 {
+	Node *temp = head;
+	while (temp != NULL)
+	{
+		cout << temp->data << " ";
+		temp = temp->next;
+	}
+	cout << endl;
+}
+
+
+Node* ReverseLL(Node *head)
+{
+	Node *head2 = NULL, *tail2 = NULL;
     if(head==NULL)
     {
-        return;
+		Node* temp =head;
+		head = head2;
+		delete temp;
+        return head;
     }
-    printReverse(head->next);
-    cout<<head->data<<" ";
+    ReverseLL(head->next);
+	//just put this one inside other LL
+
+   //cout<<head->data<<" ";
+	Node *newnode = new Node(head->data);
+	if (head2 == NULL)
+	{
+		head2 = newnode;
+		tail2 = newnode;
+	}
+	else
+	{
+		tail2->next = newnode;
+		tail2 = newnode;
+	}
 
 }
 
@@ -56,7 +85,8 @@ int main()
 	while (t--)
 	{
 		Node *head = takeinput();
-		printReverse(head);
+		head = ReverseLL(head);
+		print(head);
 		cout << endl;
 	}
 	return 0;
