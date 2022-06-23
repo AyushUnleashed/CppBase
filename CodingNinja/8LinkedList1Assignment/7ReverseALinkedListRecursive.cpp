@@ -26,32 +26,32 @@ void print(Node *head)
 }
 
 
-Node* ReverseLL(Node *head)
-{
-	Node *head2 = NULL, *tail2 = NULL;
-    if(head==NULL)
-    {
-		Node* temp =head;
-		head = head2;
-		delete temp;
-        return head;
-    }
-    ReverseLL(head->next);
-	//just put this one inside other LL
-
-   //cout<<head->data<<" ";
-	Node *newnode = new Node(head->data);
-	if (head2 == NULL)
+// Recursive Solution
+Node *ReverseLL(Node *head)
+{	
+	if(head==NULL || head->next ==NULL)
 	{
-		head2 = newnode;
-		tail2 = newnode;
-	}
-	else
-	{
-		tail2->next = newnode;
-		tail2 = newnode;
+		//for 0  or 1 element return itself
+		return head;
 	}
 
+	Node* orignalHeadNextElement = head->next;
+
+	//get head2; || Reversing Smaller LinkedList
+	Node* head2 = ReverseLL(head->next);
+
+	//after reverse of Small LinkedList we need to reverse this part also.
+
+	// orignalHeadNextElement is last element of smaller Reversed LinkedList
+	// we need to attach orignal head to last element of smaller Reversed LinkedList
+
+	orignalHeadNextElement -> next = head;
+
+	// head should point to null , becuase it is last element, after reverse
+
+	head ->next = NULL;
+
+	return head2;
 }
 
 

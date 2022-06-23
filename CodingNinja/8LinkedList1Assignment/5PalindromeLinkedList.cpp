@@ -26,11 +26,64 @@ void printReverse(Node *head)
 
 }
 
+	Node* reverseLL(Node* head) {
+  
+    if(head==NULL || head->next==NULL)
+	{
+		//for 0  or 1 element return itself
+		return head;
+	}
 
-bool isPalindrome(Node *head)
-{
+	Node* orignalHeadNextElement = head->next;
 
-}
+	//get head2; || Reversing Smaller LinkedList
+	Node* head2 = reverseLL(head->next);
+
+	//after reverse of Small LinkedList we need to reverse this part also.
+
+	// orignalHeadNextElement is last element of smaller Reversed LinkedList
+	// we need to attach orignal head to last element of smaller Reversed LinkedList
+
+	orignalHeadNextElement -> next = head;
+
+	// head should point to null , becuase it is last element, after reverse
+
+	head ->next = NULL;
+
+	return head2;
+    }
+
+
+
+    bool isPalindrome(Node* head) {
+        
+        bool isPal = true;
+        
+        Node* reversedHead = reverseLL(head);
+        int llSize = 0;
+        while(head!=NULL)
+        {
+			llSize++;
+            cout<<"Head Val:"<<head->data<<" "<<"Reversed Head Val:"<<reversedHead->data<<endl;
+            if(head->data != reversedHead->data)
+            {
+				cout<<"\n is Pal is false";
+                isPal = false;
+                break;
+            }
+            
+            // if(isPal==false)
+            // {
+            //     break;
+            // }
+            head=head->next;
+            reversedHead=reversedHead->next;
+        }
+
+		cout<<"llSize:"<<llSize<<endl;
+        return isPal;
+    }
+
 
 
 
@@ -72,6 +125,13 @@ int main()
 		else cout << "false";
 
 		cout << endl;
+
+
+		Node* reversedHead = reverseLL(head);
+
+		printReverse(head);
+		printReverse(reversedHead);
+
 	}
 
 	return 0;
