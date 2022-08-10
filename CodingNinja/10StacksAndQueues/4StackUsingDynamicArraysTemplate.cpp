@@ -6,29 +6,31 @@ using namespace std;
 //push,pop,isEmpty,Top,size()
 //#define MAX 1000
 
+template< typename T>
+
 class Stack
 {
     private:
     int n;
     int top;
-    int *data;
+    T *data;
 
     public:
     Stack()
     {
         this->n = 4;
-        data = new int[4];
+        data = new T[4];
 
         top=-1;
     }
 
-    void push(int val)
+    void push(T val)
     {
         if(top>=n-1)
         {
             //cout<<"\nStack Overflow, cannot add element";
 
-            int* newData = new int[2*n];
+            T* newData = new T[2*n];
             for(int i=0;i<n;i++)
             {
                 newData[i]=data[i];
@@ -45,12 +47,12 @@ class Stack
 
     }
 
-    int pop()
+    T pop()
     {
         if(isEmpty())
         {
             cout<<"\nStack Underflow, cannot delete";
-            return INT_MIN;
+            return 0;
         }
         else{
             cout<<"\nElement: "<<data[top]<<" deleted";
@@ -69,12 +71,12 @@ class Stack
         return false;
     }
 
-    int Top()
+    T Top()
     {
         if(isEmpty())
         {
             cout<<"\nStack Underflow";
-            return INT_MIN;
+            return 0;
         }
         cout<<"\ntop Element is:"<<data[top];
         return data[top];
@@ -92,7 +94,7 @@ class Stack
 
 int main()
 {
-    Stack s1;
+    Stack<int> s1;
     s1.push(10);
     s1.push(11);
     cout<<"\nsize:"<<s1.size();
