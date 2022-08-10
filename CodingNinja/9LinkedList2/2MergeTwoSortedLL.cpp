@@ -1,4 +1,5 @@
-#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
 
 class Node
 {
@@ -50,15 +51,19 @@ void print(Node *head)
 	cout << endl;
 }
 
+// we take the smallest node and connect it to the third linked list
+// first we traverse till one of them ends
+// then we copy all elements of other LL to 3rd LL
 Node *mergeTwoSortedLinkedLists(Node *head1, Node *head2)
 {
     Node* head3 = NULL; Node* tail3 =NULL;
 
-    if(head1==NULL && head2==NULL)
+    // Basic Checks 
+    if(head1==NULL && head2==NULL) // if both empty
     {
         return NULL;
     }
-    else if(head1==NULL)
+    else if(head1==NULL) // if one empty, other is ans
     {
         return head2;
     }
@@ -67,9 +72,11 @@ Node *mergeTwoSortedLinkedLists(Node *head1, Node *head2)
         return head1;
     }
 
+    // till both of them values, compare and assign smaller to newNode
+
     while(head1!=NULL && head2!=NULL)
     {
-        Node* newNode;
+        Node* newNode; // to hold smaller of the 2 values from Linkedlists
         if(head1->data >= head2->data)
         {
             newNode = head2;
@@ -81,19 +88,24 @@ Node *mergeTwoSortedLinkedLists(Node *head1, Node *head2)
             head1=head1->next;
         }
 
-        if(head3 == NULL)
+        if(head3 == NULL) // if first element to be linked
         {
             head3=newNode;
             tail3=newNode;
         }
-        else
+        else // for second and so one elements to be connected
         {
             tail3->next= newNode;
             tail3 = tail3->next;
         }
     }
 
+    // after comparing and traversing
+    // one LL will have no elements
+    // so we copy all elements from other one till it gets empty.
+
     while(head1!=NULL)
+    
     {
         tail3->next = head1;
         head1=head1->next;
@@ -107,6 +119,7 @@ Node *mergeTwoSortedLinkedLists(Node *head1, Node *head2)
         tail3 = tail3->next;
     }
     
+    // we return 3rd Linkedlist , which contains the combined linkedlist
     return head3;
 }
 
