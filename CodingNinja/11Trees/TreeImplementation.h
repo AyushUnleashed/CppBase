@@ -19,7 +19,7 @@ class TreeNode{
     T data;
     vector< TreeNode<T>*> children;
 
-    TreeNode(int data){
+    TreeNode(T data){
         this->data= data;
     }
 };
