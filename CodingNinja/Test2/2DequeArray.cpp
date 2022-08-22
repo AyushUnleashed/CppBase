@@ -1,5 +1,3 @@
-//Not Done
-
 
 #include<iostream>
 using namespace std;
