@@ -1,0 +1,19 @@
+# Skipped NoteMaking / Others
+
+- Quick sort , Merge Sort Notes
+
+
+
+
+Test1:
+1. Recurrence Relation for Tower of Hanoi Problem
+2.Complexity of different operations in a sorted array.
+3. Complexity of a Recurrence Relation
+4. Does s contain t ?
+5. Maximum Profit on App
+6. Split Array
+
+
+
+Stacks & Queues:
+* Stock Span - using stack 
