@@ -3,6 +3,46 @@
 #include<queue>
 using namespace std;
 
+void printLevelWise(TreeNode<int>* root) {
+   
+    // we need FIFP so we use queue
+    queue<TreeNode<int>*> pendingNodes;
+
+    //push root node to queue;
+    pendingNodes.push(root);
+    
+
+    //run till nothing is pending to print
+    while(pendingNodes.size()!=0){
+        
+        // get the front of queue, this is the current node we need to print
+        TreeNode<int>* front = pendingNodes.front();
+        // pop it from queue as we are going to print it, to avoid printing it again
+        pendingNodes.pop();
+        
+        cout<<front->data<<":"; //print nodes data
+        
+        int noOfChilds = front->children.size();
+        
+        // print data of all children 
+        //and on next step we will print childrens so push them to queue
+
+        for(int i=0;i<noOfChilds;i++){ // print all childrens of current node;
+            cout<<front->children[i]->data;
+            
+            if(i!=noOfChilds-1){
+                cout<<",";
+            }
+            pendingNodes.push(front->children[i]);
+        }
+        
+        cout<<endl;
+    }
+    
+}
+
+
+
 TreeNode<int>* takeInputLevelWise(){
 
     //Enter Root data
@@ -49,33 +89,13 @@ TreeNode<int>* takeInputLevelWise(){
 
 }
 
-void printTreeRecursive(TreeNode<int>* root){
-
-    if(root==NULL){  //edge case
-        return;
-    }
-
-    cout<<root->data<<":";
-
-    for(int i=0;i<root->children.size();i++){
-        cout<<root->children[i]->data<<",";
-    }
-    cout<<endl;
-    for(int i=0;i<root->children.size();i++){
-        printTreeRecursive(root->children[i]);
-    }
-
-    //base case of recursiom => root->children.size() == 0 
-    //loop would not work
-
-}
 
 int main(){
 
     TreeNode<int>* root = takeInputLevelWise();
 
     cout<<"\nTree:\n";
-    printTreeRecursive(root);
+    printLevelWise(root);
 
     return 0;
 }
