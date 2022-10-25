@@ -2,6 +2,11 @@
 #include<conio.h>
 using namespace std;
 
+// What is fobonacci series
+// 0 1 1 2 3 5 8 13 21 ...
+// first 2 digit 0, 1
+// next digit is sum of prev 2 digits
+
 void fib(int);
 
 int main()

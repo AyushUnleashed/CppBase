@@ -4,7 +4,9 @@ using namespace std;
 int main()
 {  int i=1;
 
-    i=i++ + i++;
-    cout<<i;
+    int x=i++ + i++;
+    //x = 1 + 2
+    // i is now 3
+    cout<<i<<" "<<x;
     return 0;
 }

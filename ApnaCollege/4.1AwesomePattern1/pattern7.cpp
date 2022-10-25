@@ -3,6 +3,9 @@
 #include<stdlib.h>
 using namespace std;
 
+//Tip: 1 row is made by only one loop
+// think till which position we have to put space, from where digits or * 
+
 //My code
 int main()
 {   system("cls");
@@ -11,6 +14,7 @@ int main()
     cin>>n;
     cout<<endl;
 
+    //TOP 2 Triangles, Total length 2n
     for(int i=1;i<=n;i++)
     {   
         
@@ -29,7 +33,9 @@ int main()
         
     }
 
-     for(int i=n;i>0;i--)
+
+    //Bottom 2 triangles
+    for(int i=n;i>0;i--)
 
     {   for(int j=1;j<2*n;j++)
             {

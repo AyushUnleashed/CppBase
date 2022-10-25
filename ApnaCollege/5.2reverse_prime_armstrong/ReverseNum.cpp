@@ -2,6 +2,10 @@
 #include<stdlib.h>
 using namespace std;
 
+
+// What is a number -> Sequnce of Digits
+// Reverse Number -> Reversed sequence of digits
+
 int main()
 {   system("cls");
     int num,rev=0,lastdigit=0,onum;
