@@ -88,11 +88,10 @@ int PQ::removeMin() {
         }
 
         // swap top element with last ele
-        int temp = pq[0];
+        int ans = pq[0];
         pq[0] = pq[lastIdx];
-        pq[lastIdx] = temp;
+        pq[lastIdx] = ans;
 
-        int del = pq[lastIdx];
         // pop last element
         pq.pop_back();
         
@@ -161,5 +160,5 @@ int PQ::removeMin() {
             }
           }
         }
-        return del;
+        return ans;
 }
