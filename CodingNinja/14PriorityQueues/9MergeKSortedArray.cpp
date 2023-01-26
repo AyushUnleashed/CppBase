@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+// To track the ith array & jth position of the element
 class Node{
     public:
   int val;
@@ -15,6 +15,8 @@ class Node{
     }
 };
 
+// to sort nodes by value in ascending order
+// MinHeap logic
 class Compare {
 public:
   bool operator()(Node a, Node b) {
@@ -48,19 +50,24 @@ vector<int> mergeKSortedArrays(vector<vector<int> *> input) {
   if (pq.empty()) {
     return ans;
   }
+  //get all values for Top element
 
   int i = pq.top().i;
   int j=pq.top().j;
   int val = pq.top().val;
 
+  //push it into ans, pop it from heap
   ans.push_back(val);
   pq.pop();
 
+    // push next element to heap if valid index
   j++;
   if(j<input[i]->size()){
     vector<int> curr = *input[i];
     pq.push(Node(curr[j], i, j));
   }
+
+  //repeat till heap is empty
 
   while (!pq.empty()) {
 
@@ -77,6 +84,7 @@ vector<int> mergeKSortedArrays(vector<vector<int> *> input) {
     }
   }
 
+    //all elements are sorted in ans vector
   return ans;
 }
 
