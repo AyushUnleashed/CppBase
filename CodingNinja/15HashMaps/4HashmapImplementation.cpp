@@ -205,5 +205,15 @@ int main() {
         map.insert(key, value); 
         cout << map.getLoadFactor() << endl;
     } 
+
+    map.remove("abc2");
+    map.remove("abc5");
+    cout<<endl;
+    for (int i = 0; i < 10; i++) {
+        char c = '0' + i; 
+        string key = "abc"; 
+        key = key + c; 
+        cout<< key<< ":"<<map.getValue(key)<<endl ;
+    } 
     cout << map.size()<< endl;
 }
