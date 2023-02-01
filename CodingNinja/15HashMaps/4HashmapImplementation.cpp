@@ -23,7 +23,7 @@ class MapNode{
     }
 };
 
-template <typename v>
+template <typename V>
 class HashMap{
     public:
     int currSize;
@@ -64,11 +64,48 @@ class HashMap{
         return hashedIndex;
     }
 
+    void reshash(){
+        // point temp to current bucket array
+        // create new array of double size & point buckets to that
+        // traverse old array, traverse each element of linkedlist
+        // copy it to new buckets, by recalculating hashedindex
+
+        MapNode<V>** temp = buckets;
+        buckets = new MapNode<V>*[2*bucketSize];
+        int oldBucketSize = bucketSize;
+        bucketSize*=2;
+        currSize=0;
+
+        for(int i=0;i<bucketSize;i++){
+            buckets[i]=NULL;
+        }
+        // element from old buckets to new buckets
+        for(int i=0;i<oldBucketSize;i++){
+            MapNode<V>* head = temp[i];
+
+            // traverse LL & copy elements
+            while(head!=NULL){
+                //action
+                string key = head->key;
+                V val=head->value;
+                insert(key,val);
+                head=head->next;
+            }
+        }
+
+        //deleting temp
+        for(int i=0;i<oldBucketSize;i++){
+            MapNode<V>* head= temp[i];
+            delete  head; // recursive deletion
+        }
+        delete [] temp;
+    }
+
     public:
 
     V getValue(string key){
         //search & return
-        int idx=getHashedIndex(string key);
+        int idx=getHashedIndex(key);
         MapNode<V>* head=buckets[idx];
         while(head!=NULL){
             if(head->key==key){
@@ -82,7 +119,7 @@ class HashMap{
 
     V remove(string key){
 
-        int idx=getHashedIndex(string key);
+        int idx=getHashedIndex(key);
         MapNode<V>* head=buckets[idx];
         MapNode<V>* prev=NULL;
 
@@ -95,7 +132,7 @@ class HashMap{
                     prev->next=head->next;
                 }else{
                     //first element is ans
-                    buckets[i]=head->next;
+                    buckets[idx]=head->next;
                 }
                 head->next = NULL; //we set this 
                 delete head; //so delete call doesn't delete all the next nodes
@@ -113,7 +150,8 @@ class HashMap{
     void insert(string key, V value){
         // to insert, we need index to insert in
         int idx=getHashedIndex(key);
-        MapNode<V>* head=buckets[idx],tail=NULL;
+        MapNode<V>* head=buckets[idx];
+        MapNode<V>* tail=NULL;
 
         //check if key already exist
         //search in LL
@@ -132,6 +170,19 @@ class HashMap{
         newNode->next = head;
         buckets[idx]=newNode; // head changed
         currSize++;//node added
+
+        double loadFactor = ((double)(currSize)/bucketSize);
+        if(loadFactor>0.7){
+            reshash();
+        }
+    }
+
+    int size(){
+        return currSize;
+    }
+
+    double getLoadFactor(){
+        return (1.0*currSize)/bucketSize;
     }
 
     ~HashMap(){
@@ -142,3 +193,17 @@ class HashMap{
     }
 
 };
+
+
+int main() { 
+    HashMap<int> map; 
+    for (int i = 0; i < 10; i++) {
+        char c = '0' + i; 
+        string key = "abc"; 
+        key = key + c; 
+        int value = i + 1; 
+        map.insert(key, value); 
+        cout << map.getLoadFactor() << endl;
+    } 
+    cout << map.size()<< endl;
+}
