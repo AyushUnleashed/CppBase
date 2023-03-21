@@ -14,12 +14,13 @@ vector<string> gss(string s){
         ans.push_back(""); //gss("") -> [""];
         return ans;
     }
-    ans = gss(s.substr(1)); //ans = gss(bc) -> [--, -c, b-, bc ];
+    ans = gss(s.substr(1)); // gss(bc) -> [--, -c, b-, bc ];
 
     int n = ans.size();
     for(int i=0;i<n;i++){
-        string temp = s[0]+ans[i]; // we made : [a--, a-c, ab-, abc ];
-        ans.push_back(temp); // & pushed it
+         // not take -> already in smallAns
+        ans.push_back(s[0]+ans[i]); // take
+
     }
     return ans;
 }
