@@ -14,43 +14,30 @@ vector <string> getMazePaths(int sr, int sc, int dr, int dc) {
     int m = dc;
     
     vector<string> ans;
+    vector<string> rightCall;
+    vector<string> bottomCall;
 
-   
-    if(i==n){
-        string curr="";
-        while(j<m){
-            curr+="h";
-            j++;
-        }
-        ans.push_back(curr);
+    if(i==n && j==m){
+        ans.push_back("");
         return ans;
     }
     
-    if(j==m){
-        string curr="";
-        while(i<n){
-            curr+="v";
-            i++;
-        }
-            ans.push_back(curr);
-        return ans;
+    if(j<m){
+        rightCall = getMazePaths(i,j+1,n,m);
+    }
+
+    if(i<n){
+        bottomCall = getMazePaths(i+1,j,n,m);
     }
     
-    
-    vector<string> rightCall = getMazePaths(i,j+1,n,m);
-    for(int i=0;i<rightCall.size();i++){
-        rightCall[i]="h"+rightCall[i];
+    for(auto &path:rightCall){
+        ans.push_back("h"+path);
+    }
+
+    for(auto &path:bottomCall){
+        ans.push_back("v"+path);
     }
     
-    
-    vector<string> bottomCall = getMazePaths(i+1,j,n,m);
-    
-    for(int i=0;i<bottomCall.size();i++){
-        bottomCall[i]="v"+bottomCall[i];
-        rightCall.push_back(bottomCall[i]);
-    }
-    
-    ans = rightCall;
     return ans;
 }
 
